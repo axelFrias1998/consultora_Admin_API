@@ -2,10 +2,10 @@
   "name": "consultora_admin_api",
   "version": "1.0.0",
   "description": "Esta API tiene como objetivo la creación de formatos de auditoría para el sistema que se solicitó en la clase de Administración Empresarial. Se desarrolló en Node.js porque quise aprender algo nuevo.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
     "lint": "eslint"
   },
   "repository": {
@@ -27,7 +27,9 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.2.0",
+    "yamljs": "^0.3.0"
   },
   "engines": {
     "node": "16.x"
