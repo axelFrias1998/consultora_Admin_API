@@ -1,0 +1,4 @@
+1. GitHub config
+2. npm init -y
+3. Instalación nodemon y eslint npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D
+4. Instalación de express npm i expresss

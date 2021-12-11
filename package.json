@@ -1,0 +1,29 @@
+{
+  "name": "consultora_admin_api",
+  "version": "1.0.0",
+  "description": "Esta API tiene como objetivo la creación de formatos de auditoría para el sistema que se solicitó en la clase de Administración Empresarial. Se desarrolló en Node.js porque quise aprender algo nuevo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axelFrias1998/consultora_Admin_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/axelFrias1998/consultora_Admin_API/issues"
+  },
+  "homepage": "https://github.com/axelFrias1998/consultora_Admin_API#readme",
+  "devDependencies": {
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
