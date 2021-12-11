@@ -2,3 +2,11 @@
 2. npm init -y
 3. Instalación nodemon y eslint npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D
 4. Instalación de express npm i expresss
+5. Instalación de cors npm i cors
+6. heroku create
+	git push heroku master
+	heroku ps:scale web=1 -> ejecuta el programa
+	herolu open -> abre la url
+	heroku logs --tail
+6. Index.js
+
