@@ -4,7 +4,9 @@
   "description": "Esta API tiene como objetivo la creación de formatos de auditoría para el sistema que se solicitó en la clase de Administración Empresarial. Se desarrolló en Node.js porque quise aprender algo nuevo.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,8 @@
   },
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
