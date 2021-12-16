@@ -50,6 +50,7 @@ const spects = swaggerJsDoc(options);
 //ROUTES
 app.use("/apiDocs", swaggerUi.serve, swaggerUi.setup(spects));
 app.get("/", (request, response) => {
+	console.log(process.env.DB_CONNECTION);
 	response.send("Funciona");
 });
 
