@@ -1,5 +1,4 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const User = require("../models/user.model");
 
 /**
@@ -47,6 +46,7 @@ const User = require("../models/user.model");
 router.get("/", async (request, response) => {
 	try {
 		//const users = await User.find(item => item.name === "");
+		//findbyid, remove updateone
 		const users = await User.find();
 		response.json(users);
 	} catch (error) {

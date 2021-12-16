@@ -3,15 +3,24 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
 	name: {
 		type: String,
-		require: true
+		require: true,
+		min: 4
+	},
+	emai: {
+		type: String,
+		require: true,
+		max: 255,
+		min: 4
 	},
 	password: {
 		type: String,
-		require: true
+		require: true,
+		max: 1024,
+		min: 6
 	},
 	date: {
 		type: Date,
-		default: Date.now
+		default: Date.now,
 	}
 });
 
