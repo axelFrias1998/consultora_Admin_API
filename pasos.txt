@@ -8,5 +8,10 @@
 	heroku ps:scale web=1 -> ejecuta el programa
 	herolu open -> abre la url
 	heroku logs --tail
-6. Index.js
-
+6. app.js
+7. npm i swagger-ui-express https://github.com/scottie1984/swagger-ui-express
+8. npm i yamljs NO
+9. npm i swagger-jsdoc
+10. npm i mongoose
+11. npm i dotenv
+12. .env file para proteger cadenas de conexión y demás
