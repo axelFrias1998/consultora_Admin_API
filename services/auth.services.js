@@ -7,6 +7,11 @@ class AuthService {
 		const savedUser = await user.save();
 		return savedUser;
 	}
+
+	async emailExists(email){
+		const exists = await User.findOne({email: email});
+		return exists;
+	}
 };
 
 module.exports = AuthService;
