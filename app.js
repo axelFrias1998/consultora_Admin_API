@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 //const cors = require("cors");
 require("dotenv/config");
 
-const swaggerOptions = require("./swagger.options");
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 const routerApi = require("./routes/app.route");
 
@@ -30,10 +29,30 @@ const options = {
 }
 app.use(cors(options));*/
 
-const spects = swaggerJsDoc(swaggerOptions);
+const options = {
+	definition: {
+		openapi: "3.0.0",
+		info: {
+			title: "Admin API",
+			version: "1.0.0",
+			description: "Documentación API de consultoría"
+		},
+		servers: [
+			{
+				url: "http://localhost:2000"
+			}
+		]
+	},
+	apis: ["./routes/*.js"]
+};
+const spects = swaggerJsDoc(options);
 
 //ROUTES
-app.use("/", swaggerUi.serve, swaggerUi.setup(spects));
+app.use("/apiDocs", swaggerUi.serve, swaggerUi.setup(spects));
+app.get("/", (request, response) => {
+	console.log(process.env.DB_CONNECTION);
+	response.send("Funciona");
+});
 
 routerApi(app);
 

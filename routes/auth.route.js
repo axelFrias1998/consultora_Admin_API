@@ -12,7 +12,6 @@ router.get("/", (request, response) => {
 
 router.post("/register", validatorHandler(registerSchema, "body"), async (request, response, next) => {
 	try {
-		console.log("hola");
 		const body = request.body;
 		const savedUser = await service.registerUser(body);
 		response.json(savedUser);
