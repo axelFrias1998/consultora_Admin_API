@@ -1,19 +1,24 @@
 const router = require("express").Router();
-const User = require("../models/user.model");
-const { registerSchema } = require("../schemas/auth.schema");
+const AuthService = require("../services/auth.services");
 
-router.post("/register", async (request, response) => {
+const validatorHandler = require("../middlewares/validator.handler");
+const { registerSchema, loginSchema, getUserSchema }= require("../schemas/auth.schema");
+
+const service = new AuthService();
+
+router.post("/register", validatorHandler(registerSchema, "body"), async (request, response, next) => {
 	try {
-		const user = new User({...request.body});
-		const savedUser = await user.save();
+		console.log("hola");
+		const body = request.body;
+		const savedUser = await service.registerUser(body);
 		response.json(savedUser);
 	} catch (error) {
-		response.json({message: error})
+		next(console.error);
 	}
 });
 
 
-router.post("/login", (request, response) => {
+router.post("/login", validatorHandler(loginSchema, "body"), async (request, response, next) => {
 	response.send("register");
 });
 

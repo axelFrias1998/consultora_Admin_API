@@ -45,6 +45,7 @@ const User = require("../models/user.model");
 
 router.get("/", async (request, response) => {
 	try {
+		console.log("hola");
 		//const users = await User.find(item => item.name === "");
 		//findbyid, remove updateone
 		const users = await User.find();
