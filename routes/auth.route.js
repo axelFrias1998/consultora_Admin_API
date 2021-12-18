@@ -56,7 +56,7 @@ router.get("/", (request, response) => {
  *             schema:
  *               type: object
  *               items:
- *                 $ref: '#/components/schemas/Auth/loginSchema'
+ *                 $ref: '#/components/schemas/Auth'
  *
  */
 
