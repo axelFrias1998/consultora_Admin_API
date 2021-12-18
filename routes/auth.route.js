@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const AuthService = require("../services/auth.services");
+const bcrypt = require("bcryptjs");
 
 const validatorHandler = require("../middlewares/validator.handler");
+const AuthService = require("../services/auth.services");
 const { registerSchema, loginSchema }= require("../schemas/auth.schema");
-const { status } = require("express/lib/response");
 
 const service = new AuthService();
 
@@ -66,15 +66,37 @@ router.post("/register", validatorHandler(registerSchema, "body"), async (reques
 		if(emailExist){
 			return response.status(400).json({message: "Email already exists"});
 		}
-		const savedUser = await service.registerUser(body);
-		return response.json(savedUser);
+
+		//HASH password
+		const salt = await bcrypt.genSalt(10);
+		const hashPassword = await bcrypt.hash(body.password, salt);
+
+		const user = {
+			name: body.name,
+			email: body.email,
+			password: hashPassword
+		};
+
+		const savedUser = await service.registerUser(user);
+		return response.json({user: savedUser._id});
 	} catch (error) {
 		next(console.error);
 	}
 });
 
 router.post("/login", validatorHandler(loginSchema, "body"), async (request, response, next) => {
-	return response.send("register");
+	try {
+		const body = request.body;
+		//Check if the email exists
+		const user = await service.userExists(body.email);
+		if(!user){
+			return response.status(400).json({message: "Email or password are incorrect"});
+		}
+		const validPass = await bcrypt.compare(body.password, user.password);
+		return response.json({user: savedUser._id});
+	} catch (error) {
+		next(console.error);
+	}
 });
 
 module.exports = router;

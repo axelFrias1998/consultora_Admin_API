@@ -12,6 +12,11 @@ class AuthService {
 		const exists = await User.findOne({email: email});
 		return exists;
 	}
+
+	async userExists(email){
+		const exists = await User.findOne({email: email});
+		return exists;
+	}
 };
 
 module.exports = AuthService;

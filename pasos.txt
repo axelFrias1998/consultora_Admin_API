@@ -19,3 +19,5 @@
 14. middleware de validation handler
 15. npm i @hapi/boom
 16. middleware de errores
+17. npm i bcryptjs
+18. npm i jsonwebtokken

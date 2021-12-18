@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
 		require: true,
 		min: 4
 	},
-	emai: {
+	email: {
 		type: String,
 		require: true,
 		max: 255,
