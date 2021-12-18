@@ -55,9 +55,12 @@ router.get("/", (request, response) => {
  *           application/json:
  *             schema:
  *               type: object
- *               items:
- *                 $ref: '#/components/schemas/Auth'
- *
+ *               email:
+ *                 type: string
+ *                 description: The email of the user
+ *              password:
+ *                 type: string
+ *                 description: The password of the user
  */
 
 router.post("/register", validatorHandler(registerSchema, "body"), async (request, response, next) => {
