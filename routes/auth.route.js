@@ -56,7 +56,7 @@ router.get("/", (request, response) => {
  *             schema:
  *               type: object
  *               items:
- *                 $ref: '#/components/schemas/Auth'
+ *                 $ref: '#/components/schemas/Auth/loginSchema'
  *
  */
 
@@ -118,7 +118,7 @@ router.post("/login", validatorHandler(loginSchema, "body"), async (request, res
 
 		//Create and assign token (send any data)
 		const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-		return response.json({token: token});
+		return response.header("authorization", token);
 	} catch (error) {
 		next(error);
 	}
