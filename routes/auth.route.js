@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+require("dotenv/config");
 
 const validatorHandler = require("../middlewares/validator.handler");
 const AuthService = require("../services/auth.services");
@@ -43,9 +45,9 @@ router.get("/", (request, response) => {
 
 /**
  * @swagger
- * /Register:
- *   get:
- *     summary: Returns the user created
+ * /register:
+ *   post:
+ *     summary: Returns the id of the user created
  *     responses:
  *       200:
  *         description: The registration endpoint
@@ -84,6 +86,23 @@ router.post("/register", validatorHandler(registerSchema, "body"), async (reques
 	}
 });
 
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Returns the id of the user created
+ *     responses:
+ *       200:
+ *         description: The registration endpoint
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               items:
+ *                 $ref: '#/components/schemas/Auth'
+ *
+ */
+
 router.post("/login", validatorHandler(loginSchema, "body"), async (request, response, next) => {
 	try {
 		const body = request.body;
@@ -93,9 +112,15 @@ router.post("/login", validatorHandler(loginSchema, "body"), async (request, res
 			return response.status(400).json({message: "Email or password are incorrect"});
 		}
 		const validPass = await bcrypt.compare(body.password, user.password);
-		return response.json({user: savedUser._id});
+		if(!validPass){
+			return response.status(400).json({message: "Email or password are incorrect"});
+		}
+
+		//Create and assign token (send any data)
+		const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+		return response.header("auth-token", token).json({token: token});
 	} catch (error) {
-		next(console.error);
+		next(error);
 	}
 });
 

@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 //const cors = require("cors");
 require("dotenv/config");
 
+const accessHandler = require("./middlewares/access.handler");
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 const routerApi = require("./routes/app.route");
 
@@ -56,6 +57,7 @@ app.get("/", (request, response) => {
 
 routerApi(app);
 
+app.use(accessHandler)
 app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);

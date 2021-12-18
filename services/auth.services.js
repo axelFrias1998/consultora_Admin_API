@@ -10,6 +10,9 @@ class AuthService {
 
 	async emailExists(email){
 		const exists = await User.findOne({email: email});
+		if(!exists){
+			throw boom.badRequest("Email already exists");
+		}
 		return exists;
 	}
 
