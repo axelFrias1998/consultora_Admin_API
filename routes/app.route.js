@@ -1,16 +1,13 @@
 const express = require("express");
 
-//TODO Hacer rutas de usuario
-const usersRouter = require("./users.route");
 const authRouter = require("./auth.route");
-const auditsRouter = require("./audits.route");
+const auditsRouter = require("./audit.route");
 
 function routerApi(app){
 	const router = express.Router();
 	app.use("/api", router);
-	router.use("/users", usersRouter);
 	router.use("/auth", authRouter);
-	router.use("/audits", auditsRouter);
+	router.use("/audit", auditsRouter);
 }
 
 module.exports = routerApi;

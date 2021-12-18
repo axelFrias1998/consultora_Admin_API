@@ -118,7 +118,7 @@ router.post("/login", validatorHandler(loginSchema, "body"), async (request, res
 
 		//Create and assign token (send any data)
 		const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-		return response.header("auth-token", token).json({token: token});
+		return response.json({token: token});
 	} catch (error) {
 		next(error);
 	}

@@ -50,14 +50,14 @@ const spects = swaggerJsDoc(options);
 
 //ROUTES
 app.use("/apiDocs", swaggerUi.serve, swaggerUi.setup(spects));
-app.get("/", (request, response) => {
+/*app.get("/", (request, response) => {
 	console.log(process.env.DB_CONNECTION);
 	response.send("Funciona");
 });
-
+*/
 routerApi(app);
 
-app.use(accessHandler)
+app.use(accessHandler);
 app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
